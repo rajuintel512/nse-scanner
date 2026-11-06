@@ -538,6 +538,18 @@ def print_summary(results, now):
             print(f"  {sig:<4} {r['symbol'].rsplit('.', 1)[0]:<12} Rs {r['close']:<9} {r['reasons']}")
 
 
+def report_no_data(state, now):
+    """Tell the user (once per day) that no market data was found."""
+    msg = (f"No market data found at {now:%H:%M} IST on {now:%d %b %Y}. "
+           + ("The market has not started yet." if now.time() < OPEN_T else
+              "The market may be closed today (holiday), or Yahoo Finance returned nothing."))
+    print(msg)
+    if "NO_DATA" not in state["sent"]:
+        if notify("[Scanner] No data found", msg) is not False:
+            state["sent"].append("NO_DATA")
+            STATE_FILE.write_text(json.dumps(state))
+
+
 def live(args):
     now = datetime.now(IST)
     today = now.date()
@@ -579,10 +591,11 @@ def live(args):
         bars, results = scan_cycle(daily, today, session_fraction(now), args.min_turnover)
         if not bars:
             if args.once:
-                print("No intraday data for today - probably an exchange holiday (or Yahoo returned nothing). Exiting.")
+                report_no_data(state, now)
                 return
             if now.time() > dtime(10, 30):
-                sys.exit("No intraday data for today - probably an exchange holiday (or no market data). Exiting.")
+                report_no_data(state, now)
+                sys.exit("Exiting.")
             print("No intraday data yet, will retry.")
         else:
             print_summary(results, now)
