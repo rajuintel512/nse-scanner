@@ -1,0 +1,43 @@
+# Save this file in your GitHub repo as: .github/workflows/scan.yml
+# Runs the NSE/BSE scanner in the cloud on market days and sends alerts to your phone.
+# Cron times are in UTC. IST = UTC + 5:30.
+name: market-scan
+
+on:
+  schedule:
+    - cron: "0,30 4-9 * * 1-5"   # 09:30 to 15:00 IST, every 30 minutes, Mon-Fri
+    - cron: "50 9 * * 1-5"       # 15:20 IST: last scan + paper portfolio update
+  workflow_dispatch:             # lets you press "Run workflow" by hand to test
+
+permissions:
+  contents: write                # needed to save alerts_state.json / paper_portfolio.json
+
+concurrency:
+  group: market-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install yfinance pandas requests
+
+      - name: Scan
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: | if [ "${{ github.event.schedule }}" = "50 9 * * 1-5" ]; then python nse_bse_scanner.py --live --once --paper else python nse_bse_scanner.py --live --once fi 
+      - name: Save state
+        run: | git config user.name "scanner-bot" git config user.email "scanner-bot@users.noreply.github.com" for f in alerts_state.json paper_portfolio.json; do if [ -f "$f" ]; then git add "$f"; fi done if ! git diff --cached --quiet; then git commit -m "Update scanner state" git push fi
