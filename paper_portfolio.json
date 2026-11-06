@@ -1,0 +1,77 @@
+{
+  "cash": 16750.362630000105,
+  "start_capital": 1000000,
+  "positions": {
+    "KALYANKJIL.NS": {
+      "qty": 169,
+      "entry": 590.75,
+      "date": "2026-11-06",
+      "stop": 547.13,
+      "target": 677.99
+    },
+    "MOTILALOFS.NS": {
+      "qty": 90,
+      "entry": 1102.0,
+      "date": "2026-11-06",
+      "stop": 1013.6,
+      "target": 1278.8
+    },
+    "IKIO.NS": {
+      "qty": 480,
+      "entry": 195.0,
+      "date": "2026-11-06",
+      "stop": 174.18,
+      "target": 236.64
+    },
+    "REGAAL.NS": {
+      "qty": 1126,
+      "entry": 88.77,
+      "date": "2026-11-06",
+      "stop": 80.83,
+      "target": 104.65
+    },
+    "ICICIBANK.NS": {
+      "qty": 63,
+      "entry": 1571.2,
+      "date": "2026-11-06",
+      "stop": 1505.2,
+      "target": 1703.2
+    },
+    "BHEL.NS": {
+      "qty": 238,
+      "entry": 418.8,
+      "date": "2026-11-06",
+      "stop": 388.12,
+      "target": 480.16
+    },
+    "APOLLO.NS": {
+      "qty": 225,
+      "entry": 413.8,
+      "date": "2026-11-06",
+      "stop": 369.42,
+      "target": 502.56
+    },
+    "MEESHO.NS": {
+      "qty": 428,
+      "entry": 233.55,
+      "date": "2026-11-06",
+      "stop": 214.73,
+      "target": 271.19
+    },
+    "BAJAJ-AUTO.NS": {
+      "qty": 9,
+      "entry": 10900.0,
+      "date": "2026-11-06",
+      "stop": 10375.52,
+      "target": 11948.96
+    },
+    "SAIL.NS": {
+      "qty": 582,
+      "entry": 171.6,
+      "date": "2026-11-06",
+      "stop": 159.8,
+      "target": 195.2
+    }
+  },
+  "history": []
+}
