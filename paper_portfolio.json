@@ -1,14 +1,7 @@
 {
-  "cash": 16750.362630000105,
+  "cash": 26798.779320000118,
   "start_capital": 1000000,
   "positions": {
-    "KALYANKJIL.NS": {
-      "qty": 169,
-      "entry": 590.75,
-      "date": "2026-11-06",
-      "stop": 547.13,
-      "target": 677.99
-    },
     "MOTILALOFS.NS": {
       "qty": 90,
       "entry": 1102.0,
@@ -71,7 +64,25 @@
       "date": "2026-11-06",
       "stop": 159.8,
       "target": 195.2
+    },
+    "FEDERALBNK.NS": {
+      "qty": 290,
+      "entry": 359.7,
+      "date": "2026-11-11",
+      "stop": 340.72,
+      "target": 397.66
     }
   },
-  "history": []
+  "history": [
+    {
+      "symbol": "KALYANKJIL.NS",
+      "entry": 590.75,
+      "exit": 677.99,
+      "qty": 169,
+      "pnl": 14529.14,
+      "reason": "target",
+      "entry_date": "2026-11-06",
+      "exit_date": "2026-11-11"
+    }
+  ]
 }
