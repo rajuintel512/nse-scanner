@@ -1,5 +1,5 @@
 {
-  "cash": 26798.779320000118,
+  "cash": 14499.270720000146,
   "start_capital": 1000000,
   "positions": {
     "MOTILALOFS.NS": {
@@ -58,19 +58,19 @@
       "stop": 10375.52,
       "target": 11948.96
     },
-    "SAIL.NS": {
-      "qty": 582,
-      "entry": 171.6,
-      "date": "2026-11-06",
-      "stop": 159.8,
-      "target": 195.2
-    },
     "FEDERALBNK.NS": {
       "qty": 290,
       "entry": 359.7,
       "date": "2026-11-11",
       "stop": 340.72,
       "target": 397.66
+    },
+    "AJMERA.NS": {
+      "qty": 715,
+      "entry": 147.0,
+      "date": "2026-11-20",
+      "stop": 132.74,
+      "target": 175.52
     }
   },
   "history": [
@@ -83,6 +83,16 @@
       "reason": "target",
       "entry_date": "2026-11-06",
       "exit_date": "2026-11-11"
+    },
+    {
+      "symbol": "SAIL.NS",
+      "entry": 171.6,
+      "exit": 159.8,
+      "qty": 582,
+      "pnl": -7060.47,
+      "reason": "stop-loss",
+      "entry_date": "2026-11-06",
+      "exit_date": "2026-11-20"
     }
   ]
 }
